@@ -92,9 +92,8 @@ set(URIPARSER_INCS
 include_directories(${CMAKE_SOURCE_DIR}/include)
 set(LIB_NAME uriparser)
 
-if(CMAKE_BUILD_TYPE STREQUAL "")
-  set(CONFIG_TYPE "NOCONFIG")
-else()
+set(CONFIG_TYPE "NOCONFIG")
+if(NOT "${CMAKE_BUILD_TYPE}" STREQUAL "")
   string(TOUPPER ${CMAKE_BUILD_TYPE} CONFIG_TYPE)
 endif()
 
