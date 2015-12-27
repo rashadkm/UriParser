@@ -101,13 +101,31 @@ add_library(uriparser ${URIPARSER_SRCS})
 set_target_properties(uriparser PROPERTIES SOVERSION ${VERSION_STRING})
 
 if(NOT WIN32)
-configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/cmake/liburiparser.pc.cmakein
-  ${CMAKE_CURRENT_BINARY_DIR}/liburiparser.pc @ONLY)
-
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/liburiparser.pc
-  DESTINATION
-  "${INSTALL_PKGCONFIG_DIR}")
+  configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/cmake/liburiparser.pc.cmakein
+    ${CMAKE_CURRENT_BINARY_DIR}/liburiparser.pc @ONLY)
+  
+  install(FILES ${CMAKE_CURRENT_BINARY_DIR}/liburiparser.pc
+    DESTINATION
+    "${INSTALL_PKGCONFIG_DIR}")
 endif()
+export(TARGETS uriparser
+  FILE "${CMAKE_BINARY_DIR}/UriParserTargets.cmake")
+
+install(TARGETS uriparser
+  EXPORT UriParserTargets
+  RUNTIME DESTINATION "${INSTALL_BIN_DIR}"
+  ARCHIVE DESTINATION "${INSTALL_LIB_DIR}"
+  LIBRARY DESTINATION "${INSTALL_LIB_DIR}" )
+
+install(FILES ${URIPARSER_INCS} DESTINATION "${INSTALL_INC_DIR}")
+ 
+# Install the export set for use with the install-tree
+install(EXPORT UriParserTargets DESTINATION "${INSTALL_CMAKE_DIR}")
+
+if(BUILD_TESTS)
+  enable_testing()
+endif()
+
 set(URIPARSER_VERSION ${VERSION_STRING})
 
 if(WIN32 AND NOT CYGWIN)
@@ -125,21 +143,6 @@ foreach(p LIB BIN INCLUDE CMAKE)
     set(${var} "${CMAKE_INSTALL_PREFIX}/${${var}}")
   endif()
 endforeach()
-
-install(TARGETS uriparser
-  EXPORT UriParserTargets
-  RUNTIME DESTINATION "${INSTALL_BIN_DIR}"
-  ARCHIVE DESTINATION "${INSTALL_LIB_DIR}"
-  LIBRARY DESTINATION "${INSTALL_LIB_DIR}" )
-
-install(FILES ${URIPARSER_INCS} DESTINATION "${INSTALL_INC_DIR}")
-
-if(BUILD_TESTS)
-  enable_testing()
-endif()
-
-export(TARGETS uriparser
-  FILE "${CMAKE_BINARY_DIR}/UriParserTargets.cmake")
 
 file(RELATIVE_PATH REL_INCLUDE_DIR "${INSTALL_CMAKE_DIR}"
   "${INSTALL_INC_DIR}")
@@ -160,6 +163,3 @@ install(FILES
   "${CMAKE_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/UriParserConfig.cmake"
   "${CMAKE_BINARY_DIR}/UriParserConfigVersion.cmake"
   DESTINATION "${INSTALL_CMAKE_DIR}" )
- 
-# Install the export set for use with the install-tree
-install(EXPORT UriParserTargets DESTINATION "${INSTALL_CMAKE_DIR}")
