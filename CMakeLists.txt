@@ -17,6 +17,13 @@ option(BUILD_SHARED_LIBS  "Build shared libs." ON)
 option(BUILD_TESTS "Build demos." ON)
 option(BUILD_DEMOS  "Build demos." ON)
 
+set(INSTALL_BIN_DIR "${CMAKE_INSTALL_PREFIX}/bin" CACHE PATH "Installation directory for executables")
+set(INSTALL_LIB_DIR "${CMAKE_INSTALL_PREFIX}/lib" CACHE PATH "Installation directory for libraries")
+set(INSTALL_INC_DIR "${CMAKE_INSTALL_PREFIX}/include/minizip" CACHE PATH "Installation directory for headers")
+set(INSTALL_MAN_DIR "${CMAKE_INSTALL_PREFIX}/share/man" CACHE PATH "Installation directory for manual pages")
+set(INSTALL_PKGCONFIG_DIR "${CMAKE_INSTALL_PREFIX}/share/pkgconfig" CACHE PATH "Installation directory for pkgconfig (.pc) files")
+
+
 include (CheckIncludeFile)
 include(CheckCSourceRuns)
 
@@ -85,6 +92,14 @@ set(URIPARSER_INCS
   )
 include_directories(${CMAKE_SOURCE_DIR}/include)
 set(LIB_NAME uriparser)
+
+if(CMAKE_BUILD_TYPE STREQUAL "")
+set(CONFIG_TYPE "NOCONFIG")
+else()
+  set(CONFIG_TYPE "${CMAKE_BUILD_TYPE}")
+endif()
+
+
 add_library(uriparser ${URIPARSER_SRCS})
 set_target_properties(uriparser PROPERTIES SOVERSION ${VERSION_STRING})
 
