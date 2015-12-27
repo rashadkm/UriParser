@@ -148,7 +148,7 @@ configure_file(cmake/UriParserConfig.cmake.in
   "${PROJECT_BINARY_DIR}/UriParserConfig.cmake" @ONLY)
 
 # ... for the install tree
-set(CONF_INCLUDE_DIRS "\${URIPARSER_CMAKE_DIR}/${REL_INCLUDE_DIR}")
+set(CONF_INCLUDE_DIRS "\${INSTALL_CMAKE_DIR}/${REL_INCLUDE_DIR}")
 configure_file(cmake/UriParserConfig.cmake.in
   "${CMAKE_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/UriParserConfig.cmake" @ONLY)
 # ... for both
