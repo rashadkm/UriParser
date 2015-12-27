@@ -100,13 +100,14 @@ endif()
 add_library(uriparser ${URIPARSER_SRCS})
 set_target_properties(uriparser PROPERTIES SOVERSION ${VERSION_STRING})
 
+if(NOT WIN32)
 configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/cmake/liburiparser.pc.cmakein
   ${CMAKE_CURRENT_BINARY_DIR}/liburiparser.pc @ONLY)
 
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/liburiparser.pc
   DESTINATION
   "${INSTALL_PKGCONFIG_DIR}")
-
+endif()
 set(URIPARSER_VERSION ${VERSION_STRING})
 
 if(WIN32 AND NOT CYGWIN)
