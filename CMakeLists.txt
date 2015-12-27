@@ -88,7 +88,7 @@ set(LIB_NAME uriparser)
 add_library(uriparser ${URIPARSER_SRCS})
 set_target_properties(uriparser PROPERTIES SOVERSION ${VERSION_STRING})
 
-configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/liburiparser.pc.cmakein
+configure_file( ${CMAKE_CURRENT_SOURCE_DIR}/cmake/liburiparser.pc.cmakein
   ${CMAKE_CURRENT_BINARY_DIR}/liburiparser.pc @ONLY)
 
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/liburiparser.pc
