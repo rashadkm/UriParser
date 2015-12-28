@@ -32,18 +32,12 @@ set(INSTALL_CMAKE_DIR ${DEF_INSTALL_CMAKE_DIR} CACHE PATH
   "Installation directory for CMake files")
 
 include (CheckIncludeFile)
-include(CheckCSourceRuns)
+include (CheckFunctionExists)
 
 check_include_file("wchar.h" HAVE_WCHAR_H)
 check_include_file("stdio.h" HAVE_STDIO_H)
 
-check_c_source_runs("
-#include <stdio.h>
-#include <wchar.h>
-int main() {
-    wprintf((wchar_t *)0, 0);
-    return 0;
-}" HAVE_WPRINTF)
+check_function_exists(wprintf HAVE_WPRINTF)
 
 set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake ${CMAKE_MODULE_PATH})
 
