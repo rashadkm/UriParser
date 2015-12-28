@@ -54,13 +54,11 @@
 #undef _UT
 #define _UT(x) x
 
-
-
 #undef URI_FUNC
-#define URI_FUNC(x) uri##x##A
+#define URI_FUNC(x) URI_CALL uri##x##A
 
 #undef URI_TYPE
-#define URI_TYPE(x) Uri##x##A
+#define URI_TYPE(x) URI_CALL Uri##x##A
 
 
 

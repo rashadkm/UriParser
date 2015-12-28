@@ -57,10 +57,10 @@
 
 
 #undef URI_FUNC
-#define URI_FUNC(x) uri##x##W
+#define URI_FUNC(x) URI_CALL uri##x##W
 
 #undef URI_TYPE
-#define URI_TYPE(x) Uri##x##W
+#define URI_TYPE(x) URI_CALL Uri##x##W
 
 
 
