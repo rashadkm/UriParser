@@ -153,7 +153,7 @@ configure_file(cmake/UriParserConfigVersion.cmake.in
 install(FILES
   "${CMAKE_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/UriParserConfig.cmake"
   "${CMAKE_BINARY_DIR}/UriParserConfigVersion.cmake"
-  DESTINATION "${INSTALL_CMAKE_DIR}" )
+  DESTINATION ${DEF_INSTALL_CMAKE_DIR} )
 
 # Install the export set for use with the install-tree
 install(EXPORT UriParserTargets DESTINATION ${DEF_INSTALL_CMAKE_DIR})
