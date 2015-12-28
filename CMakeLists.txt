@@ -121,9 +121,6 @@ install(TARGETS uriparser
 
 install(FILES ${URIPARSER_INCS} DESTINATION "${INSTALL_INC_DIR}")
  
-# Install the export set for use with the install-tree
-install(EXPORT UriParserTargets DESTINATION "${INSTALL_CMAKE_DIR}")
-
 if(BUILD_TESTS)
   enable_testing()
 endif()
@@ -157,3 +154,7 @@ install(FILES
   "${CMAKE_BINARY_DIR}${CMAKE_FILES_DIRECTORY}/UriParserConfig.cmake"
   "${CMAKE_BINARY_DIR}/UriParserConfigVersion.cmake"
   DESTINATION "${INSTALL_CMAKE_DIR}" )
+
+# Install the export set for use with the install-tree
+install(EXPORT UriParserTargets DESTINATION ${DEF_INSTALL_CMAKE_DIR})
+
