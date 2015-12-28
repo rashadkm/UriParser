@@ -52,14 +52,6 @@
 #undef URI_ENABLE_UNICODE   /* Internal for !URI_NO_UNICODE */
 
 
-#define URIPARSER_DLL
-#ifdef URIPARSER_DLL
-#  if defined(WIN32) && (!defined(__BORLANDC__) || (__BORLANDC__ >= 0x500))
-#     define URI_CALL __declspec(dllexport)
-#  else
-#     define URI_CALL
-#  endif
-#endif
 
 /* Encoding */
 #ifdef URI_NO_ANSI
